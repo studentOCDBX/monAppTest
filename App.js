@@ -1,9 +1,11 @@
+import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Auth } from "./components/containers/Auth/Auth";
 import { Profil } from "./components/containers/Profil/Profil";
 import { UserContext } from "./components/contexts/UserContext";
+import ProfilStack from "./components/stacks/ProfilStack";
 
 //Composant resultat de l'exo 1
 /* export default function App() {
@@ -23,10 +25,12 @@ export default function App() {
   return (
     //On utilise la condition ternaire afin d'afficher soit le profil si pas d'utilisateur ou l'Authentification
     <UserContext.Provider value={{ user, setUser }}>
-      <ScrollView style={styles.container}>
-        {user ? <Profil /> : <Auth />}
-        <StatusBar style="auto" />
-      </ScrollView>
+      <NavigationContainer>
+        <View style={styles.container}>
+          {user ? <ProfilStack /> : <Auth />}
+          <StatusBar style="auto" />
+        </View>
+      </NavigationContainer>
     </UserContext.Provider>
   );
 }
@@ -34,12 +38,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "graylite",
+    backgroundColor: "#dfe4ea",
   },
 
   texte: {
     backgroundColor: "gray",
-    color: "green",
+    color: "red",
     fontSize: 50,
     fontWeight: "bold",
     textDecorationLine: "underline",

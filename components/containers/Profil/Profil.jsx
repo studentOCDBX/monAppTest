@@ -29,6 +29,10 @@ export function Profil(props) {
         }
     }
 
+    function goCamera() {
+        props.navigation.push("camera");
+    }
+
  
 
     return (
@@ -60,7 +64,7 @@ export function Profil(props) {
                     <TouchableOpacity onPress={openLibrary}>
                         <Entypo name="folder-images" size={35} color="royalblue" />
                     </TouchableOpacity >
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={goCamera}>
                         <Entypo name="camera" size={35} color="royalblue" />
                     </TouchableOpacity>
                 </View>
