@@ -1,5 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { Profil } from "../containers/Profil/Profil";
+import  Profil  from "../containers/Profil/Profil";
 import  Cam  from "../containers/Cam/Cam";
 
 const Stack = createStackNavigator();

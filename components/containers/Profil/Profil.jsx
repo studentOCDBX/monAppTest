@@ -7,7 +7,7 @@ import * as ImagePicker from "expo-image-picker";
 //URL de l'image de profile par defaut (Si l'utilisateur n'a pas encore d'avatar.)
 const imageDefaultUrl = "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
 
-export function Profil(props) {
+export default function Profil(props) {
 
     //on utilise le context pour afficher l'email et le username de user
     const context = useContext(UserContext);

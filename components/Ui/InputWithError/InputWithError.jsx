@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         padding: 5,
         borderRadius: 5,
         width: "100%",
-        maxw: 400,
+        maxWidth: 400,
     },
     
     input: {
