@@ -71,7 +71,7 @@ export default function Profil(props) {
                 {/* Informations de l'utilisateur */}
                 <View>
                     <Text style={styles.label}>Email:</Text>
-                <Text style={styles.data}>{ context.user.email}</Text>
+                    <Text style={styles.data}>{ context.user.email}</Text>
                     <Text style={styles.label}>Username:</Text>
                     <Text style={styles.data}>{ context.user.username}</Text>
                     <Text style={styles.label}>Description:</Text>
@@ -91,8 +91,8 @@ export default function Profil(props) {
     const styles = StyleSheet.create({
   
         image: {
-        maxWidth: 300,
-        maxHeight: 300,
+            maxWidth: 250,
+            maxHeight: 250,
         },
         
         icons_container: {
