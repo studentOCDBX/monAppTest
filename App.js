@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Auth } from "./components/containers/Auth/Auth";
 import { Profil } from "./components/containers/Profil/Profil";
 import { UserContext } from "./components/contexts/UserContext";
@@ -23,10 +23,10 @@ export default function App() {
   return (
     //On utilise la condition ternaire afin d'afficher soit le profil si pas d'utilisateur ou l'Authentification
     <UserContext.Provider value={{ user, setUser }}>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         {user ? <Profil /> : <Auth />}
         <StatusBar style="auto" />
-      </View>
+      </ScrollView>
     </UserContext.Provider>
   );
 }
@@ -34,13 +34,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "gray",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "white",
   },
 
   texte: {
-    backgroundColor: "#fff",
+    backgroundColor: "litegray",
     color: "green",
     fontSize: 50,
     fontWeight: "bold",
