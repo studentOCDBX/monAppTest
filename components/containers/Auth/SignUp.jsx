@@ -6,6 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 import Bouton from '../../Ui/Bouton/Bouton';
 import InputWithError from '../../Ui/InputWithError/InputWithError';
 
+
 // create a component
 const SignUp = (props) => {
     const context = useContext(UserContext);

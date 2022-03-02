@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Auth } from "./components/containers/Auth/Auth";
 import { Profil } from "./components/containers/Profil/Profil";
 import { UserContext } from "./components/contexts/UserContext";
