@@ -34,11 +34,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "graylite",
   },
 
   texte: {
-    backgroundColor: "litegray",
+    backgroundColor: "gray",
     color: "green",
     fontSize: 50,
     fontWeight: "bold",

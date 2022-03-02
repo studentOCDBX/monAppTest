@@ -2,6 +2,9 @@ import { useContext } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 import { UserContext } from "../../contexts/UserContext";
 import { Entypo } from '@expo/vector-icons';
+import * as ImagePicker from "expo-image-picker";
+
+//URL de l'image de profile par defaut (Si l'utilisateur n'a pas encore d'avatar.)
 const imageDefaultUrl = "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
 
 export function Profil(props) {
@@ -9,6 +12,24 @@ export function Profil(props) {
     //on utilise le context pour afficher l'email et le username de user
     const context = useContext(UserContext);
     const width = useWindowDimensions().width;
+
+    //La fonction pour ouvrir la librairie du tél ou du pc
+    async function openLibrary() {
+        let pickedImage = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            quality: 1,
+        });
+
+        if (pickedImage && !pickedImage.cancelled) {
+            context.setUser({
+             ...context.user,
+                avatar: pickedImage.uri,
+            });       
+        }
+    }
+
+ 
 
     return (
         <View
@@ -36,9 +57,9 @@ export function Profil(props) {
                     />
                 </View >
                 <View style={styles.icons_container}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={openLibrary}>
                         <Entypo name="folder-images" size={35} color="royalblue" />
-                    </TouchableOpacity>
+                    </TouchableOpacity >
                     <TouchableOpacity>
                         <Entypo name="camera" size={35} color="royalblue" />
                     </TouchableOpacity>
