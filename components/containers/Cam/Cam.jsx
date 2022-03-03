@@ -4,12 +4,14 @@ import React, { Component, useContext, useEffect, useRef, useState } from 'react
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { UserContext } from '../../contexts/UserContext';
+import * as MediaLibrary from 'expo-media-library';
 
 // create a component
 const Cam = (props) => {
 
     const context = useContext(UserContext);
     const [cameraPermission, setCameraPermission] = useState(null);
+    const [mediaPermission, setMediaPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
 
     const cameraRef = useRef();
@@ -19,6 +21,10 @@ const Cam = (props) => {
         (async () => {
             const permission = await Camera.requestCameraPermissionsAsync();
             setCameraPermission(permission.granted);
+            
+            const media = await MediaLibrary.requestPermissionsAsync();
+            setMediaPermission(media.granted);
+
         })();
     }, []);
 
@@ -41,12 +47,20 @@ const Cam = (props) => {
             context.setUser({
              ...context.user,
                 avatar: image.uri,
-            });  
+            }); 
+            
+            if (mediaPermission) {
+                await MediaLibrary.createAssetAsync(image.uri);
+            }
 
             //Revenir vers la page de profil.
             props.navigation.goBack();
         }   
 
+    }
+
+    function codeBar(event) {
+        console.log(event);
     }
 
     if (!cameraPermission) {
