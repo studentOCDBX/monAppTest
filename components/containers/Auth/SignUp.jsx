@@ -92,7 +92,7 @@ const SignUp = (props) => {
     
     return (
         <View style={styles.container}>
-            <Text>S'inscrire</Text>
+            <Text style={styles.text}>S'inscrire</Text>
             
              <InputWithError
                 holder='Pseudo:'
@@ -160,7 +160,12 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: "bold",
         marginHorizontal: 10,
-    },
+   },
+    
+    text: {
+      color: "white",
+    }
+    
 });
 
 //make this component available to the app

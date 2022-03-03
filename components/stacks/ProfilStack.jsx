@@ -1,6 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import  Profil  from "../containers/Profil/Profil";
 import  Cam  from "../containers/Cam/Cam";
+import EditInfos from "../containers/Profil/EditInfos";
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,13 @@ export default function ProfilStack() {
             <Stack.Screen
                 name='camera'
                 component={Cam}
+                options={{
+                    title: "Prenez une photo pour votre profil",
+            }}/>
+            
+            <Stack.Screen
+                name='editinfo'
+                component={EditInfos}
                 options={{
                     title: "Prenez une photo pour votre profil",
             }}/>

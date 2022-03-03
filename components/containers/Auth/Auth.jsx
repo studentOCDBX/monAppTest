@@ -1,13 +1,3 @@
-//Exo2:
-// Créer un composant "components/containers/Auth/Auth.jsx":
-// Il recevra un nom et un prenom en props.
-// On aura un View, avec du texte: Bonjour (Nome et prenom), veuillez vous connecter.
-// Styliser cette View: Couleur de font (Bleu), et le texte en blanc.
-// Augmenter la taille du texte.
-
-//Importer Auth dans App.js.
-//L'utiliser dans le return.
-
 import { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import Login from "./Login";
@@ -60,6 +50,7 @@ const styles = StyleSheet.create({
   },
   
   texte: {
+    textAlign: "center",
     color: "whitesmoke",
     fontSize: 20,
     backgroundColor: "royalblue",
@@ -70,3 +61,12 @@ const styles = StyleSheet.create({
   },
 });
 
+//Exo2:
+// Créer un composant "components/containers/Auth/Auth.jsx":
+// Il recevra un nom et un prenom en props.
+// On aura un View, avec du texte: Bonjour (Nome et prenom), veuillez vous connecter.
+// Styliser cette View: Couleur de font (Bleu), et le texte en blanc.
+// Augmenter la taille du texte.
+
+//Importer Auth dans App.js.
+//L'utiliser dans le return.
