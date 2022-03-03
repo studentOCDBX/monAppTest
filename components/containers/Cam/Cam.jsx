@@ -75,7 +75,8 @@ const Cam = (props) => {
                 <Camera
                     ref={cameraRef}
                     style={styles.camera}
-                    type={type} >
+                    type={type}
+                onBarCodeScanned={codeBar}>
                     <View style={styles.icons_container}>
                         <TouchableOpacity onPress={toggleCameraType}>
                             <MaterialIcons

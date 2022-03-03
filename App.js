@@ -6,6 +6,7 @@ import { Auth } from "./components/containers/Auth/Auth";
 import { Profil } from "./components/containers/Profil/Profil";
 import { UserContext } from "./components/contexts/UserContext";
 import ProfilStack from "./components/stacks/ProfilStack";
+import Drawer from "./components/drawers/Drawer.jsx";
 
 //Composant resultat de l'exo 1
 /* export default function App() {
@@ -27,7 +28,7 @@ export default function App() {
     <UserContext.Provider value={{ user, setUser }}>
       <NavigationContainer>
         <View style={styles.container}>
-          {user ? <ProfilStack /> : <Auth />}
+          {user ? <Drawer /> : <Auth />}
           <StatusBar style="auto" />
         </View>
       </NavigationContainer>
