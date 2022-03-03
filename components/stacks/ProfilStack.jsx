@@ -18,6 +18,14 @@ export default function ProfilStack() {
                 headerTintColor: "whitesmoke",
             }}>
             
+            <Stack.Screen name='profil'
+                component={Profil}
+                options={{
+                    title: "Votre profil",
+                    headerShown: false,
+                }}
+            />
+            
             <Stack.Screen
                 name='camera'
                 component={Cam}
@@ -25,13 +33,6 @@ export default function ProfilStack() {
                     title: "Prenez une photo pour votre profil",
             }}/>
             
-            <Stack.Screen name='profil'
-                component={Profil}
-                options={{
-                    title: "Votre profil",
-                   headerShown: false,
-                }}
-            />
         </Stack.Navigator>
     )
 }

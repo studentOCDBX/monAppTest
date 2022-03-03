@@ -1,14 +1,20 @@
 //import liraries
 import { Camera } from 'expo-camera';
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useContext, useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { UserContext } from '../../contexts/UserContext';
 
 // create a component
-const Cam = () => {
+const Cam = (props) => {
 
+    const context = useContext(UserContext);
     const [cameraPermission, setCameraPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
+
+    const cameraRef = useRef();
+    console.log(cameraRef);
+
     useEffect(() => {
         (async () => {
             const permission = await Camera.requestCameraPermissionsAsync();
@@ -25,6 +31,24 @@ const Cam = () => {
         }
     }
 
+    async function takePhoto() {
+
+        const image = await cameraRef.current.takePictureAsync();
+        console.log(image);
+
+        //Utiliser le contexte pour modifier l'avatar de l'utilisateur.
+        if (image) {
+            context.setUser({
+             ...context.user,
+                avatar: image.uri,
+            });  
+
+            //Revenir vers la page de profil.
+            props.navigation.goBack();
+        }   
+
+    }
+
     if (!cameraPermission) {
         return (
             <View>
@@ -35,9 +59,10 @@ const Cam = () => {
         return (
              <View  style={styles.container}>
                 <Camera
+                    ref={cameraRef}
                     style={styles.camera}
                     type={type} >
-                    <View >
+                    <View style={styles.icons_container}>
                         <TouchableOpacity onPress={toggleCameraType}>
                             <MaterialIcons
                                 name='flip-camera-ios'
@@ -45,7 +70,7 @@ const Cam = () => {
                                 color='green'
                             />
                         </TouchableOpacity>
-                         <TouchableOpacity>
+                         <TouchableOpacity onPress={takePhoto}>
                             <MaterialIcons
                                 name='camera'
                                 size={50}
@@ -94,3 +119,7 @@ const styles = StyleSheet.create({
 
 //make this component available to the app
 export default Cam;
+
+    // Exercice
+    //Utiliser le contexte pour modifier l'avatar de l'utilisateur.
+     //Revenir vers la page de profil.
