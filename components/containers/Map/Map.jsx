@@ -34,11 +34,9 @@ const Map = () => {
           longitudeDelta: 0.0001,
           latitudeDelta: 0.0001,
         }}
-        
         mapType="hybrid"
         style={styles.map}
-        showsUserLocation={}
-              
+        showsUserLocation={true}
       />
     </View>
   );

@@ -1,4 +1,5 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import Got from "../containers/Got/Got";
 import Map from "../containers/Map/Map";
 import ProfilStack from "../stacks/ProfilStack";
 import NavBar from "../Ui/NavBar/Navbar";
@@ -12,6 +13,12 @@ export default function Drawer() {
         header: (props) => <NavBar navigationProps={props} />,
       }}
     >
+      <DrawerNavigator.Screen
+        name="got"
+        component={Got}
+        options={{ title: "Game of Thrones" }}
+      />
+
       <DrawerNavigator.Screen
         name="profilstack"
         component={ProfilStack}
