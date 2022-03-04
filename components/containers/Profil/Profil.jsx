@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import {
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -46,15 +47,15 @@ export default function Profil(props) {
   }
 
   return (
-    <View
-      style={{
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 100,
-      }}
-    >
+    <ScrollView>
       {/*  Les infos de l'utilisateur */}
-      <View>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: 90,
+        }}
+      >
         {/* Image de profil et les boutons pour la changer */}
         <View>
           <Image
@@ -70,38 +71,44 @@ export default function Profil(props) {
               uri: context.user.avatar ? context.user.avatar : imageDefaultUrl,
             }}
           />
+          {/* les boutons pour changer l'Image de profil */}
+          <View style={styles.icons_container}>
+            <TouchableOpacity onPress={openLibrary}>
+              <Entypo name="folder-images" size={35} color="royalblue" />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={goCamera}>
+              <Entypo name="camera" size={35} color="royalblue" />
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.icons_container}>
-          <TouchableOpacity onPress={openLibrary}>
-            <Entypo name="folder-images" size={35} color="royalblue" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={goCamera}>
-            <Entypo name="camera" size={35} color="royalblue" />
-          </TouchableOpacity>
-        </View>
+
         {/* Informations de l'utilisateur */}
         <View>
           <Text style={styles.label}>Email:</Text>
           <Text style={styles.data}>{context.user.email}</Text>
+
           <Text style={styles.label}>Username:</Text>
           <Text style={styles.data}>{context.user.username}</Text>
+
           <Text style={styles.label}>Description:</Text>
           <Text style={styles.data}>
             {context.user.description
               ? context.user.description
               : "Veuillez entrer une description!"}
           </Text>
+
           <Bouton action={goEditInfos}>
             <Text style={styles.text}>Modifier vos informations</Text>
           </Bouton>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   image: {
+    alignSelf: "center",
     maxWidth: 250,
     maxHeight: 250,
   },
@@ -117,16 +124,18 @@ const styles = StyleSheet.create({
   },
 
   label: {
-    fontSize: 32,
+    fontSize: 16,
     textAlign: "center",
     color: "royalblue",
     fontWeight: "bold",
+    // paddingTop: 5,
   },
+
   data: {
     fontSize: 20,
     textAlign: "center",
     borderBottomWidth: 1,
-    borderBottomColor: "gray",
+    borderBottomColor: "royalblue",
   },
 
   text: {

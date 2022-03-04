@@ -27,10 +27,7 @@ export default function App() {
     //On utilise la condition ternaire afin d'afficher soit le profil si pas d'utilisateur ou l'Authentification
     <UserContext.Provider value={{ user, setUser }}>
       <NavigationContainer>
-        <View style={styles.container}>
-          {user ? <Drawer /> : <Auth />}
-          <StatusBar style="auto" />
-        </View>
+        <View style={styles.container}>{user ? <Drawer /> : <Auth />}</View>
       </NavigationContainer>
     </UserContext.Provider>
   );
@@ -39,7 +36,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#dfe4ea",
+    backgroundColor: "#DEDEDE",
   },
 
   texte: {
