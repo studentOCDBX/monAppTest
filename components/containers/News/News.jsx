@@ -5,33 +5,29 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
-  ScrollView,
   Dimensions,
-  TouchableOpacity,
+  ScrollView,
   ActivityIndicator,
+  Image,
 } from "react-native";
-import * as WebBrowser from "expo-web-browser";
 
 // create a component
-const Got = () => {
-  const [listPerso, setListPerso] = useState([]);
+const News = () => {
+  const [newsList, setNewsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
-      .get("https://thronesapi.com/api/v2/Characters")
+      .get(
+        "https://newsapi.org/v2/top-headlines?country=us&apiKey=a27b4e9a41af4cc49f18791a01b16ec8"
+      )
       .then((response) => {
         console.log(response);
-        setListPerso(response.data);
+        setNewsList(response.data.articles);
         setIsLoading(false);
       })
       .catch();
   }, []);
-
-  async function searchPerso(nom) {
-    await WebBrowser.openBrowserAsync("https://www.google.com/search?q=" + nom);
-  }
 
   return (
     <ScrollView>
@@ -45,23 +41,18 @@ const Got = () => {
           <ActivityIndicator size="large" color="green" />
         </View>
       ) : (
-        <View style={{ width: "100%", alignItems: "center" }}>
-          {listPerso.map((element) => {
+        <View style={styles.news_containerr}>
+          {newsList.map((element) => {
             return (
-              <TouchableOpacity
-                key={element.id}
-                style={styles.perso_container}
-                onPress={() => {
-                  searchPerso(element.fullName);
-                }}
-              >
-                <Text style={styles.perso_fullName}>{element.fullName}</Text>
+              <View key={element.url} style={styles.new_container}>
+                <Text>{element.content}</Text>
+                <Text>{element.title}</Text>
                 <Image
-                  style={styles.perso_image}
-                  source={{ uri: element.imageUrl }}
+                  style={styles.news_image}
+                  source={{ uri: element.urlToImage }}
                 />
-                <Text style={styles.perso_title}>{element.title}</Text>
-              </TouchableOpacity>
+                <Text>{element.description}</Text>
+              </View>
             );
           })}
         </View>
@@ -72,9 +63,13 @@ const Got = () => {
 
 // define your styles
 const styles = StyleSheet.create({
-  perso_container: {
+  new_container: {
     justifyContent: "center",
-    alignItems: "center",
+  },
+
+  news_container: {
+    justifyContent: "center",
+    alignSelf: "center",
     backgroundColor: "#C9C9C9",
     padding: 20,
     width: Dimensions.get("window").width,
@@ -84,15 +79,16 @@ const styles = StyleSheet.create({
     margin: 20,
   },
 
-  perso_fullName: {
+  /*   news_fullName: {
     fontSize: 20,
-  },
+  },*/
 
-  perso_image: {
+  news_image: {
+    objectFit: "cover",
     width: "100%",
     height: "100%",
   },
 });
 
 //make this component available to the app
-export default Got;
+export default News;

@@ -1,6 +1,7 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Got from "../containers/Got/Got";
 import Map from "../containers/Map/Map";
+import News from "../containers/News/News";
 import ProfilStack from "../stacks/ProfilStack";
 import NavBar from "../Ui/NavBar/Navbar";
 
@@ -14,15 +15,21 @@ export default function Drawer() {
       }}
     >
       <DrawerNavigator.Screen
-        name="got"
-        component={Got}
-        options={{ title: "Game of Thrones" }}
+        name="news"
+        component={News}
+        options={{ title: "Last news" }}
       />
 
       <DrawerNavigator.Screen
         name="profilstack"
         component={ProfilStack}
         options={{ title: "Profil" }}
+      />
+
+      <DrawerNavigator.Screen
+        name="got"
+        component={Got}
+        options={{ title: "Game of Thrones" }}
       />
 
       <DrawerNavigator.Screen
@@ -33,3 +40,5 @@ export default function Drawer() {
     </DrawerNavigator.Navigator>
   );
 }
+
+// Exo du 04/03Implémenter la fonctionnalité permettant de récupérer et d'afficher les articles sur newsapi.org.
