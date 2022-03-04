@@ -8,7 +8,10 @@ import {
   Image,
   ScrollView,
   Dimensions,
+  TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
+import * as WebBrowser from "expo-web-browser";
 
 // create a component
 const Got = () => {
@@ -24,18 +27,29 @@ const Got = () => {
       .catch();
   }, []);
 
+  async function searchPerso(nom) {
+    await WebBrowser.openBrowserAsync("https://www.google.com/search?q=" + nom);
+  }
+
   return (
     <ScrollView>
+      <ActivityIndicator size="large" color="green" />
       {listPerso.map((element) => {
         return (
-          <View key={element.id} style={styles.perso_container}>
+          <TouchableOpacity
+            key={element.id}
+            style={styles.perso_container}
+            onPress={() => {
+              searchPerso(element.fullName);
+            }}
+          >
             <Text style={styles.perso_fullName}>{element.fullName}</Text>
             <Image
               style={styles.perso_image}
               source={{ uri: element.imageUrl }}
             />
             <Text style={styles.perso_title}>{element.title}</Text>
-          </View>
+          </TouchableOpacity>
         );
       })}
     </ScrollView>
