@@ -33,7 +33,6 @@ const Got = () => {
 
   return (
     <ScrollView>
-      <ActivityIndicator size="large" color="green" />
       {listPerso.map((element) => {
         return (
           <TouchableOpacity
